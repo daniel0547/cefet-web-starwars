@@ -1,3 +1,15 @@
+var audio = new Audio('https://archive.org/download/StarWarsThemeSongByJohnWilliams/Star%20Wars%20Theme%20Song%20By%20John%20Williams.mp3');
+audio.play();
+
+$.ajax({
+	url: localStorage.getItem('last'),
+	method: 'GET',      // opcional: 'GET' é o valor padrão
+	success: function(resposta) {
+		let $introTextEl = $('.flow > pre');
+		$introTextEl.html(resposta.opening_crawl)
+	}
+});
+
 let roman= ['I','II','III','IV','V','VI','VII','VIII','IX']
 $.ajax({
 	url: "https://swapi.co/api/films/",
@@ -16,7 +28,7 @@ $.ajax({
 });
 
 $('#movies').on('click', 'li', function(e) {
-
+	localStorage.setItem('last', $(e.target).attr('data-episode-url'));
 	$.ajax({
 		url: $(e.target).attr('data-episode-url'),
 		method: 'GET',      // opcional: 'GET' é o valor padrão
