@@ -28,6 +28,8 @@ $.ajax({
 });
 
 $('#movies').on('click', 'li', function(e) {
+	audio.currentTime=0;
+	audio.play();
 	localStorage.setItem('last', $(e.target).attr('data-episode-url'));
 	$.ajax({
 		url: $(e.target).attr('data-episode-url'),
